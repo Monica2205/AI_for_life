@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Authorization</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #111; color: #eee; text-align: center; padding: 50px; }
+    .container { max-width: 500px; margin: auto; background-color: #1e1e1e; padding: 30px; border-radius: 12px; box-shadow: 0 0 15px #333; }
+    input { padding: 10px; width: 80%; margin-top: 10px; border-radius: 6px; border: none; }
+    button { margin-top: 15px; padding: 10px 20px; background: crimson; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container" id="page1">
+    <h2>🚨 Secure Authorization Required</h2>
+    <p>This page contains protected content. To proceed, please verify your identity.</p>
+    <h3>Your verification code: <span id="code">X7F9B2</span></h3>
+    <p>Copy the above code and paste it into the box below to continue.</p>
+    <input type="text" id="userInput" placeholder="Enter verification code" />
+    <br/>
+    <button onclick="checkCode()">Submit</button>
+  </div>
+
+  <div class="container hidden" id="page2">
+    <h2>Access Granted</h2>
+    <p><strong>Authorization Code:</strong> ISIS5644320</p>
+    <p>Location transmission initiated. Await coordinates and package drop confirmation.</p>
+    <p>This communication may be compromised. Immediately disable your SIM card and cease further digital activity.</p>
+    <p>Final instructions will follow. Meet you on the other side.</p>
+  </div>
+
+  <div class="container hidden" id="page3">
+    <h2>😵‍💫 You just got (safely) phished!!</h2>
+    <p>So relax — no locations, no package... but we'll definitely meet.</p>
+    <p><strong>Good news:</strong> This was fake.</p>
+    <p><strong>Bad news:</strong> Real ones don’t give you a second chance.</p>
+    <p>Now get back to reading my application 😉</p>
+  </div>
+
+  <script>
+    function checkCode() {
+      const input = document.getElementById('userInput').value.trim();
+      const actual = document.getElementById('code').textContent;
+      if (input === actual) {
+        document.getElementById('page1').classList.add('hidden');
+        document.getElementById('page2').classList.remove('hidden');
+        setTimeout(() => {
+          document.getElementById('page2').classList.add('hidden');
+          document.getElementById('page3').classList.remove('hidden');
+        }, 5000);
+      } else {
+        alert("Invalid code. Please try again.");
+      }
+    }
+  </script>
+</body>
+</html>
